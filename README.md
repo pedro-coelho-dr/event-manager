@@ -72,3 +72,34 @@
 | event_id   | INT REFERENCES events(id) ON DELETE CASCADE | References the event being attended                        |
 | user_id    | INT REFERENCES users(id) ON DELETE CASCADE | References the user attending the event                  |
 | PRIMARY KEY | (event_id, user_id) | Primary key|
+
+
+## Database Schema
+
+```mermaid
+erDiagram
+    USERS {
+        INT id PK
+        VARCHAR username
+        VARCHAR role
+    }
+    CATEGORIES {
+        INT id PK
+        VARCHAR name
+    }
+    EVENTS {
+        INT id PK
+        INT producer_id FK
+        INT category_id FK
+        VARCHAR name
+        DATE date
+    }
+    EVENT_ATTENDEES {
+        INT event_id FK
+        INT user_id FK
+    }
+
+    USERS ||--o{ EVENTS : "creates"
+    USERS ||--o{ EVENT_ATTENDEES : "attends"
+    CATEGORIES ||--o{ EVENTS : "categorizes"
+    EVENTS ||--o{ EVENT_ATTENDEES : "includes"
