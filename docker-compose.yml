@@ -1,0 +1,37 @@
+services:
+  ##app
+
+
+
+  db:
+    image: postgres:latest
+    container_name: postgres-event-manager
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - event_manager_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - event_network
+
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - event_network
+
+volumes:
+  event_manager_data:
+
+networks:
+  event_network:
+    driver: bridge
