@@ -19,7 +19,6 @@ services:
     networks:
       - event_network
 
-
   adminer:
     image: adminer
     container_name: adminer
