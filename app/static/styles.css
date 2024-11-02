@@ -1,0 +1,74 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    color: #00ff00;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"], input[type="date"], select {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: calc(100% - 22px);
+    border: 1px solid #00ff00;
+    border-radius: 3px;
+    background-color: black;
+    color: #00ff00;
+}
+
+a {
+    color: #00ff00;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline;
+    padding: 0;
+}
+
+a:hover {
+    color: #4cae4c;
+    text-decoration: underline;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(0, 255, 0, 0.1);
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message.error {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #721c24;
+}
+
+.message.success {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: #155724;
+}
+
+p {
+    margin-top: 10px;
+}

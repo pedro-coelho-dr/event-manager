@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Producer</h1>
+        <p>{{ session['username'] }}</p>
+        <h2>Your Events</h2>
+        <ul>
+            {% if events %}
+                {% for event in events %}
+                    <li>
+                        {{ event.name }} ({{ event.date }}) 
+                        <span> - {{ event_attendance_counts[event.id] }}</span>
+                        <a href="{{ url_for('main.edit_event', event_id=event.id) }}">Edit</a>
+                        <a href="{{ url_for('main.delete_event', event_id=event.id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ event.id }}').submit();">Delete</a>
+                        <form id="delete-form-{{ event.id }}" action="{{ url_for('main.delete_event', event_id=event.id) }}" method="POST" style="display:none;"></form>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No events found.</li>
+            {% endif %}
+        </ul>
+        <a href="{{ url_for('main.create_event') }}">Create Event</a>
+        <br>
+        <a href="{{ url_for('main.create_category') }}">Create Category</a>
+        <p><a href="/">Back to Login</a></p>
+    </div>
+</body>
+</html>

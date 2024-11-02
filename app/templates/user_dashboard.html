@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>User</h1>
+        <p>{{ session['username'] }}</p>
+        
+        <form action="{{ url_for('main.user_dashboard') }}" method="get">
+            <select name="category_id" id="category">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <a href="#" onclick="this.closest('form').submit();">Filter</a>
+        </form>
+
+        <h2>Your Events</h2>
+        <ul>
+            {% for event in events %}
+                <li>
+                    {{ event.name }} ({{ event.date }})
+                    {% if event.id in attending_event_ids %}
+                        Attending 
+                        <form action="{{ url_for('main.remove_attendance', event_id=event.id) }}" method="POST" style="display:inline;">
+                            <a href="#" onclick="this.closest('form').submit();">Remove</a>
+                        </form>
+                    {% else %}
+                        <form action="{{ url_for('main.attend_event', event_id=event.id) }}" method="POST" style="display:inline;">
+                            <a href="#" onclick="this.closest('form').submit();">Attend</a>
+                        </form>
+                    {% endif %}
+                </li>
+            {% else %}
+                <li>No events found.</li>
+            {% endfor %}
+        </ul>
+
+        <p><a href="/">Back to Login</a></p>
+    </div>
+</body>
+</html>

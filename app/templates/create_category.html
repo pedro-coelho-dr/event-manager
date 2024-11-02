@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Category</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Category</h1>
+        <form action="{{ url_for('main.create_category') }}" method="post">
+            <label for="name">Category Name:</label>
+            <input type="text" id="name" name="name" required>
+            <p><a href="#" onclick="this.closest('form').submit();">Create Category</a></p>
+        </form>
+        <p><a href="{{ url_for('main.producer_dashboard') }}">Back to Dashboard</a></p>
+    </div>
+</body>
+</html>
